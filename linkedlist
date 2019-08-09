@@ -1,0 +1,57 @@
+#include <iostream>
+using namespace std;
+struct Node 
+{ 
+  int data; 
+  struct Node *next; 
+}; 
+struct Node* head = NULL;
+struct Node* third(struct Node* head)
+{
+    struct Node* fast=head;
+    struct Node* slow=head;
+    int i=0;
+    while(i!=3)
+    {
+       fast=fast->next;
+       i++;
+    }
+    while(fast!=NULL)
+    {
+      slow=slow->next;
+      fast=fast->next;
+
+    }
+    head=slow;
+    return head;
+}
+
+void insert(int new_data) { 
+   struct Node* new_node = (struct Node*) malloc(sizeof(struct Node)); 
+   new_node->data = new_data; 
+   new_node->next = head; 
+   head = new_node; 
+ 
+} 
+void display() { 
+   struct Node* ptr;
+   ptr = head;
+   while (ptr != NULL) { 
+      cout<< ptr->data <<" "; 
+      ptr = ptr->next; 
+   } 
+} 
+int main()
+{
+    int i,n,v;
+   cin>>n;
+   for(i=0;i<n;i++)
+   {
+       cin>>v;
+       insert(v);
+   } Node* p=third(head);
+   cout<<p->data<<endl;
+    display();
+    
+    return 0;
+}
